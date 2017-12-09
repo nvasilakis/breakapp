@@ -1,13 +1,40 @@
 {
   "name": "breakapp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Automated, Flexible Compartmentalization",
+  "keywords": [
+    "Decomposition", "Compartmentalization", "Compartmentalisation",
+    "Isolation", "Sealing", "Security", "Least-Privilege", "PoLP",
+    "Sandbox", "Sandboxing"
+  ],
   "main": "breakapp.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nvasilakis/breakapp.git"
   },
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/andromeda/breakapp/issues"
+  },
+  "homepage": "https://github.com/andromeda/breakapp",
   "dependencies": {
     "@andromeda/breakapp": "*"
+  },
+  "author": {
+    "name" : "Nikos Vasilakis",
+    "email" : "nikos@vasilak.is",
+    "url" : "http://nikos.vasilak.is"
+  },
+  "contributors": [
+    "Ben Karel <eschew@gmail.com> (http://eschew.org)"
+  ],
+  "eslintConfig": {
+    "extends": "google",
+    "env": {
+      "node": true
+    }
+  },
+  "peerDependencies": {
+    "@andromeda/malicious": "*"
   }
 }
