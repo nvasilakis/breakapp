@@ -9,3 +9,53 @@ Experimental results demonstrate feasibility by enabling simplified security har
 
 Read more about the problem and approach in our [PLOS17](http://nikos.vasilak.is/pubs/breakapp:plos:2017/) or [NDSS18](http://nikos.vasilak.is/pubs/breakapp:ndss:2018/) papers;
   if you have developed useful BreakApp policies, feel free to submit a [pull request](https://github.com/andromeda/breakapp).
+
+## Installation
+
+BreakApp can be installed using `npm`:
+
+```
+npm install breakapp
+```
+
+You can install it ([without using sudo](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md)).
+
+## Use
+
+Simply include and configure `breakapp` at the top level.
+
+```JavaScript
+var breakApp = require("breakapp");
+// require other modules
+```
+
+Note that it should be the first module loaded; it will throw a warning if its not!
+
+## Application-wide Configuration
+
+Users that know more about the application's security and performance characteristics (_e.g._, throughput-oriented, few dangerous modules _etc._) can further tune `breakapp`'s configuration.
+The `configure` method allows users to pass in parameters that will guide decomposition beyond the defaults.
+
+```JavaScript
+var breakApp = require("breakapp");
+breakApp.configure({box: breakApp.boxes.SBX, doubt: [/.*http.*/]});
+```
+
+The call above instructs the system to load all http-related modules in their own dedicated sandboxes.
+
+## Package-specific Policies
+
+By default, BreakApp is fully backwards compatible:
+  the only change required is to just include the `breakapp` module.
+
+However, users concerned with individual packages can choose to confine them.
+
+```JavaScript
+// an example profile
+var breakApp = require("breakapp");
+var malicious = require("malicious", {type: breakApp.type.PROCESS});
+```
+
+For example, after loading `breakapp`, they can load `malicious`
+with an isolation policy that protects against reading the state of any other
+imported modules (including, say, the database credentials):
