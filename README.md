@@ -59,3 +59,16 @@ var malicious = require("malicious", {type: breakApp.type.PROCESS});
 For example, after loading `breakapp`, they can load `malicious`
 with an isolation policy that protects against reading the state of any other
 imported modules (including, say, the database credentials):
+
+## Compatibility
+
+Policy expressions are _fully_ compatible with existing codebases.
+Expressing policies is _backward_-compatible with systems that do _not_ provide a BreakApp-enabled module system;
+  due to variadic arguments, the policy argument is ignored by the built-in `require` function.
+Not specifying policies (_i.e._, all of the code out there today) is _forward_-compatible with systems that _do_ provide BreakApp-enabled module system:
+  BreakApp will use the application-wide default configuration.
+
+## Contributing
+
+Send your pull requests back to the [@andromeda/breakapp](https://github.com/andromeda/breakapp) repository.
+
